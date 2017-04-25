@@ -28,7 +28,7 @@ The goals / steps of this project are the following:
 
 ### Camera Calibration
 
-#### 1. Compute the camera matrix and distortion coefficients.
+#### 1. Compute the camera matrix and distortion coefficients
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
@@ -37,7 +37,7 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 ![alt text][image1]
 
 
-#### 2. Distortion-corrected image.
+#### 2. Distortion-corrected image
 
 I use cv2.undistort and the camera calibration matrix generated from the previous block to remove distortion in a sample chessboard calibration image and test image.
 
@@ -114,13 +114,13 @@ I scale the lane pixel values to meters using the following scaling factors acco
 
 I use these values to compute the polynomial coefficients in meters and use these coefficients to compute the left and right radius of curvature. I also compute the vehicle position assuming the camera is positioned at the center of the vehicle and and the distance between the left and right lane line midpoint and image center.
 
-#### Using a histogram
+#### 1. Using a histogram
 I use the scipy.signal find_peaks_cwt function to identify the peaks in the histogram. I filter the identified peaks to reject any peaks close to image edges and any peaks below a specified minimum. I apply the sliding window method on the peak histogram points to extract the lane pixels. First, I split the image into 10 windows (1/10 of image height) and starting with the bottom window, search for lane lines within the windows. I use a histogram to store the x and y coordinates of all nonzero pixels. The column with the most nonzero pixels is used to estimate the lane line. Furthermore, I remove any x or y coordinates that exceed 2 standard deviations from the mean. I use the filtered pixels and a weighted average of previous lane pixels with np.polyfit to compute a second order polynomial to fit the lane line points. 
 
-#### Using an image mask
+#### 2. Using an image mask
 I use the previously generated second order polynomial to create an image mask over a specific region of interest where I am most likely to find lane lines. I use this mask to remove non-lane pixels and all lane (nonzero) pixels in the region of interest to compute another second order polynomial. 
 
-#### Highlight left and right lane lines
+#### 3. Highlight left and right lane lines
 I use a lane line finding method similar to the one used in the first lane line finding project of this course. The left lane is highlighted in red and the right lane is highlighted in blue.
 
 ### Image Processing Pipeline 
