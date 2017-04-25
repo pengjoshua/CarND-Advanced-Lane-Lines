@@ -93,7 +93,7 @@ In the image below, I use + symbols to indicate the corners of the lane trapezoi
 ![alt text][image6]
 
 ### Edge Detection
-In addition to the Sobel first derivative operation I tried the Laplacian second derivative operation (http://docs.opencv.org/3.1.0/d5/d0f/tutorial_py_gradients.html). I used the Laplacian filter (cv2.Laplacian) and thresholded pixels to highlight only negative values (following a dark-light-dark edge fashion). The Laplacian filter generated better results than combinations of Sobel gradients.
+When converting the image to grayscale I follow the recommended RGB ratios presented in Yoo et al (0.5 for red, 0.4 for green, and 0.1 for blue) to enhance the gradient. In addition to the Sobel first derivative operation, I tried the Laplacian second derivative operation (http://docs.opencv.org/3.1.0/d5/d0f/tutorial_py_gradients.html). I used the Laplacian filter (cv2.Laplacian) and thresholded pixels to highlight only negative values (following a dark-light-dark edge fashion). The Laplacian filter generated better results than combinations of Sobel gradients.
 
 I used these thresholding operations to create several masks to detect edges in the images. The first mask is the binary thresholded mask generated from the Laplacian filter. I apply thresholding only on the S (Saturation) channel of the image. If less than 1% of pixels were detected, then I apply the Laplacian threshold on the grayscaled image.
 The second mask is a thresholding mask on the S channel pixels. The third mask is a brightness mask to reject dark lines. I combine either the second and third masks or the first and third masks. The result is a binary warped image.
@@ -145,3 +145,7 @@ This project highlighted the significance of the Convolutional Neural Network an
 
 ![alt text][image11]
 ![alt text][image12]
+
+### References
+
+Yoo, H., Yang, U., & Sohn, K. (2013). [Gradient-enhancing conversion for illumination-robust lane detection.](https://pdfs.semanticscholar.org/2bce/94e1f0d921d6876cf346103f5f3e121bfdd8.pdf) IEEE Transactions on Intelligent Transportation Systems, 14(3), 1083-1094.
