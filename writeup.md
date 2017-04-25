@@ -24,6 +24,7 @@ The goals / steps of this project are the following:
 [image9]: ./output_images/lanedetection.png "Lane Detection"
 [image10]: ./output_images/pipeline.png "Pipeline"
 [image11]: ./output_images/project_video_output.gif "Output"
+[image12]: ./output_images/challenge_video_output.gif "Challenge"
 
 ### Camera Calibration
 
@@ -136,10 +137,11 @@ The following are processed images put through the pipeline.
 
 ### Results and Discussion 
 
-This pipeline was overall quite successful in identifying lane lines in the project videos. The pipeline has some difficulty keeping track of the lanes in both challenge videos. A short clip of the resulting output video is presented below.
+This pipeline was overall quite successful in identifying lane lines in the project videos. The pipeline has some difficulty keeping track of the lanes in both challenge videos. Short clips of the resulting output videos are presented below.
 
 The harder challenge video provides no separating median strip blocking the view of opposing traffic, is filmed under different lighting conditions (or different time of day), contains sharper turns, contains a smaller lane, and contains closer distracting artifacts that take up more space in the image and obscure the lane (trees, tree shadows, foliage, grass, etc). My pipeline had difficulty with the illumination and color shade variation in the challenge videos.
 
 This project highlighted the significance of the Convolutional Neural Network and Deep Learning based approach used in the previous project for behavioral cloning.
 
 ![alt text][image11]
+![alt text][image12]
